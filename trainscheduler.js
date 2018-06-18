@@ -54,13 +54,17 @@ $("#add-train-btn").on("click", function(event) {
   alert("Train successfully added");
 
   // Clears all of the text-boxes
-  $("##train-name-input").val("");
+  $("#train-name-input").val("");
   $("#destination-input").val("");
   $("#time-input").val("");
   $("#frequesncy-input").val("");
 });
+
+
 // 3. Create Firebase event for adding train to the database and a row in the html when a user adds an entry
+
 database.ref().on("child_added", function(childSnapshot) {
+// $("tbody").empty()
 
     console.log(childSnapshot.val());
 
@@ -77,16 +81,16 @@ database.ref().on("child_added", function(childSnapshot) {
    console.log(trainFrequesncy);
 
    // Prettify the train time
-  var trainTimePretty = moment.unix(trainTime).format("HH:mm-military time");
+//   var trainTimePretty = moment.unix(trainTime).format("HH:mm-military time");
 
   // Assume the following situations.
 
     // (TEST 1)
-    // First Train of the Day is 3:00 AM
-    // Assume Train comes every 3 minutes.
-    // Assume the current time is 3:16 AM....
+    // First Train of the Day is 5:30 AM
+    // Assume Train comes every 10 minutes.
+    // Assume the current time is 6:15 AM....
     // What time would the next train be...? (Use your brain first)
-    // It would be 3:18 -- 2 minutes away
+    // It would be 6:20 -- 5 minutes away
 
     // (TEST 2)
     // First Train of the Day is 3:00 AM
@@ -113,10 +117,10 @@ database.ref().on("child_added", function(childSnapshot) {
     // 5 + 3:16 = 3:21
 
     // Assumptions
-    var tFrequency = 3;
+    var tFrequency = trainFrequesncy;
 
     // Time is 3:30 AM
-    var firstTime = "03:30";
+    var firstTime = trainTime;
 
     // First Time (pushed back 1 year to make sure it comes before current time)
     var firstTimeConverted = moment(firstTime, "HH:mm").subtract(1, "years");
@@ -141,6 +145,13 @@ database.ref().on("child_added", function(childSnapshot) {
     // Next Train
     var nextTrain = moment().add(tMinutesTillTrain, "minutes");
     console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm"));
+
+    var nextArrival = moment(nextTrain).format("hh:mm")
+    
+
+     // Add each train's data into the table
+  $("#train-table > tbody").append("<tr><td>" + trainName + "</td><td>" + trainDestination + "</td><td>" +
+  trainFrequesncy + "</td><td>" + nextArrival + "</td><td>" + tMinutesTillTrain + "</td></tr>");
  
 
 });
