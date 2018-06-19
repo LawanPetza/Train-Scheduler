@@ -38,7 +38,7 @@ $("#add-train-btn").on("click", function(event) {
       destination: trainDestination,
       time: trainTime,
       frequesncy: trainFrequesncy
-    //   dateAdded: firebase.database.ServerValue.TIMESTAMP
+      // timeAdded: firebase.database.ServerValue.TIMESTAMP
       
     };
     // Uploads train data to the database
