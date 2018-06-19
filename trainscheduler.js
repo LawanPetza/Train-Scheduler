@@ -1,12 +1,6 @@
 /* global firebase moment */
 // Steps to complete:
 
-// 1. Initialize Firebase
-// 2. Create button for adding new employees - then update the html + update the database
-// 3. Create a way to retrieve employees from the employee database.
-// 4. Create a way to calculate the months worked. Using difference between start and current time.
-//    Then use moment.js formatting to set difference in months.
-// 5. Calculate Total billed
 
 // Initialize Firebase
 var config = {
@@ -84,42 +78,10 @@ database.ref().on("child_added", function(childSnapshot) {
 //   var trainTimePretty = moment.unix(trainTime).format("HH:mm-military time");
 
   // Assume the following situations.
-
-    // (TEST 1)
-    // First Train of the Day is 5:30 AM
-    // Assume Train comes every 10 minutes.
-    // Assume the current time is 6:15 AM....
-    // What time would the next train be...? (Use your brain first)
-    // It would be 6:20 -- 5 minutes away
-
-    // (TEST 2)
-    // First Train of the Day is 3:00 AM
-    // Assume Train comes every 7 minutes.
-    // Assume the current time is 3:16 AM....
-    // What time would the next train be...? (Use your brain first)
-    // It would be 3:21 -- 5 minutes away
-
-
-    // ==========================================================
-
-    // Solved Mathematically
-    // Test case 1:
-    // 16 - 00 = 16
-    // 16 % 3 = 1 (Modulus is the remainder)
-    // 3 - 1 = 2 minutes away
-    // 2 + 3:16 = 3:18
-
-    // Solved Mathematically
-    // Test case 2:
-    // 16 - 00 = 16
-    // 16 % 7 = 2 (Modulus is the remainder)
-    // 7 - 2 = 5 minutes away
-    // 5 + 3:16 = 3:21
-
-    // Assumptions
+  
+  // Assumptions
     var tFrequency = trainFrequesncy;
 
-    // Time is 3:30 AM
     var firstTime = trainTime;
 
     // First Time (pushed back 1 year to make sure it comes before current time)
