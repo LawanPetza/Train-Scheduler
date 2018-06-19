@@ -119,4 +119,8 @@ database.ref().on("child_added", function (childSnapshot) {
 
 
 
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> b8ae92678300daeb70fe63d511f6870cb5c772ed
