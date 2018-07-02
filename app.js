@@ -81,7 +81,8 @@ database.ref().on("child_added", function (childSnapshot) {
   // Assumptions
   var tFrequency = trainFrequesncy;
 
-  var firstTime = trainTime;
+  var firstTime = moment.unix(trainTime).format("HH:mm");
+  console.log(firstTime);
 
   // First Time (pushed back 1 year to make sure it comes before current time)
   var firstTimeConverted = moment(firstTime, "HH:mm").subtract(1, "years");
